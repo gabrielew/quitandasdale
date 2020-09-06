@@ -41,4 +41,38 @@ window.onload = () => {
   for (let i = 0; i < imgArray.length; i++) {
     imgArray[i].src = imagesArray[i].image;
   }
+
+  //GEOLOCATION
+  async function getCity(position) {
+    const base_url = `
+      http://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json
+    `;
+
+    fetch(base_url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const city = data.address.city;
+        if (city === "Varginha") {
+          Toastify({
+            text: `Atenção não atendemos a cidade de ${city}`,
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            backgroundColor: "linear-gradient(to right, #ddddd, #96c93d)",
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            onClick: function () {}, // Callback after click
+          }).showToast();
+        }
+      })
+      .catch(function (err) {
+        console.warn("Something went wrong.", err);
+      });
+  }
+
+  navigator.geolocation.getCurrentPosition(getCity);
 };
