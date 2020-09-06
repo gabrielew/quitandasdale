@@ -42,10 +42,34 @@ window.onload = () => {
     imgArray[i].src = imagesArray[i].image;
   }
 
+  function callToastify(
+    text,
+    duration,
+    gravity,
+    position,
+    firstRGB,
+    secondRGB
+  ) {
+    return Toastify({
+      text: text,
+      duration: duration,
+      newWindow: true,
+      close: true,
+      gravity: gravity, // `top` or `bottom`
+      position: position, // `left`, `center` or `right`
+      backgroundColor: `linear-gradient(to right, #${firstRGB}, #${secondRGB})`,
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      onClick: function () {}, // Callback after click
+    }).showToast();
+  }
+
   //GEOLOCATION
-  async function getCity(position) {
+  async function getCity(geolocation) {
     const base_url = `
-      https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json
+      https://nominatim.openstreetmap.org/reverse?
+      lat=${geolocation.coords.latitude}&
+      lon=${geolocation.coords.longitude}&
+      format=json
     `;
 
     fetch(base_url)
@@ -55,40 +79,22 @@ window.onload = () => {
       .then((data) => {
         const city = data.address.city;
         if (city !== "Varginha") {
-          Toastify({
-            text: `Atenção, ainda não atendemos a sua cidade!`,
-            duration: 60000,
-            newWindow: true,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            backgroundColor: "linear-gradient(to right, #ddddd, #96c93d)",
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            onClick: function () {}, // Callback after click
-          }).showToast();
+          const text = "Atenção, ainda não atendemos a sua cidade!";
+          callToastify(text, 60000, "top", "right", "dddddd", "96c93d");
         }
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.warn("Something went wrong.", err);
       });
   }
 
   navigator.geolocation.getCurrentPosition(
-    (position) => {
-      getCity(position);
+    (geolocation) => {
+      getCity(geolocation);
     },
-    (err) => {
-      Toastify({
-        text: `Atenção, entregas somente na cidade de VARGINHA/MG!`,
-        duration: 60000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "linear-gradient(to right, #b11016, #b11016)",
-        stopOnFocus: true,
-        onClick: function () {},
-      }).showToast();
+    () => {
+      const text = "Atenção, entregas somente na cidade de VARGINHA/MG!";
+      callToastify(text, 60000, "top", "right", "b11016", "b11016");
     }
   );
 };
