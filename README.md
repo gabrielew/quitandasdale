@@ -6,3 +6,4 @@
     [x] CSS;
     [x] Vanilla JS;
     [x] Publish in Github pages.
+    [x] Geolocation to find users city
