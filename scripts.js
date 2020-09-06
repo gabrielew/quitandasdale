@@ -1,7 +1,6 @@
 window.onload = () => {
   //URLS
-  // const assetsURL = "https://gabrielew.github.io/quitandasdale/assets";
-  const assetsURL = "assets";
+  const assetsURL = "https://gabrielew.github.io/quitandasdale/assets";
   const whatsappURL = "https://api.whatsapp.com/send?phone=5535988551486&text=";
 
   // MessageArray
