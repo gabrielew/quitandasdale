@@ -1,15 +1,30 @@
 window.onload = () => {
   //URLS
-  const assetsURL = "https://gabrielew.github.io/quitandasdale/assets";
+  // const assetsURL = "https://gabrielew.github.io/quitandasdale/assets";
+  const assetsURL = "assets";
   const whatsappURL = "https://api.whatsapp.com/send?phone=5535988551486&text=";
 
   // MessageArray
   const messageArray = [
-    { message: "Olá, quero pedir rosca de açucar" },
-    { message: "Olá, quero pedir rosca de coco com leite condensado" },
-    { message: "Olá, quero pedir rosca tradicional" },
+    { message: "Olá, quero pedir uma rosca" },
+    { message: "Olá, quero pedir um bolo doce" },
+    { message: "Olá, quero pedir um bolo salgado" },
     { message: "Olá, quero pedir pão de cebola" },
     { message: "Olá, quero pedir pão de batata" },
+  ];
+
+  const imagesArray = [
+    { image: `${assetsURL}/logo.png` },
+    { image: `${assetsURL}/roscas.png` },
+    { image: `${assetsURL}/whatsapp.svg` },
+    { image: `${assetsURL}/bolo-doce.png` },
+    { image: `${assetsURL}/whatsapp.svg` },
+    { image: `${assetsURL}/bolo-salgado.png` },
+    { image: `${assetsURL}/whatsapp.svg` },
+    { image: `${assetsURL}/logo.png` },
+    { image: `${assetsURL}/whatsapp.svg` },
+    { image: `${assetsURL}/logo.png` },
+    { image: `${assetsURL}/whatsapp.svg` },
   ];
 
   //HREFS
@@ -23,10 +38,8 @@ window.onload = () => {
 
   //SOURCES
   const imgArray = document.querySelectorAll("img");
-  imgArray[0].src = `${assetsURL}/logo.png`;
 
-  for (let i = 2; i < imgArray.length; i = i + 2) {
-    imgArray[i - 1].src = `${assetsURL}/logo.png`;
-    imgArray[i].src = `${assetsURL}/whatsapp.svg`;
+  for (let i = 0; i < imgArray.length; i++) {
+    imgArray[i].src = imagesArray[i].image;
   }
 };
