@@ -56,7 +56,7 @@ window.onload = () => {
         const city = data.address.city;
         if (city !== "Varginha") {
           Toastify({
-            text: `Atenção não atendemos a cidade de ${city}`,
+            text: `Atenção, ainda não atendemos a sua cidade!`,
             duration: 3000,
             destination: "https://github.com/apvarun/toastify-js",
             newWindow: true,
