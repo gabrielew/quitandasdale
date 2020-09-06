@@ -83,11 +83,11 @@ window.onload = () => {
         duration: 60000,
         newWindow: true,
         close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        backgroundColor: "linear-gradient(to right, #ddddd, #96c93d)",
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        onClick: function () {}, // Callback after click
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #b11016, #b11016)",
+        stopOnFocus: true,
+        onClick: function () {},
       }).showToast();
     }
   );
