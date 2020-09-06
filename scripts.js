@@ -45,7 +45,7 @@ window.onload = () => {
   //GEOLOCATION
   async function getCity(position) {
     const base_url = `
-      http://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json
+      https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json
     `;
 
     fetch(base_url)
