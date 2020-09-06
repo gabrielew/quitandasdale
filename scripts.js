@@ -54,7 +54,7 @@ window.onload = () => {
       })
       .then((data) => {
         const city = data.address.city;
-        if (city === "Varginha") {
+        if (city !== "Varginha") {
           Toastify({
             text: `Atenção não atendemos a cidade de ${city}`,
             duration: 3000,
