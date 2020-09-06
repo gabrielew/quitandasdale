@@ -1,6 +1,6 @@
 ## Quitandas da Lê
 
-> Simple page to train some skills and publish in Github pages.
+> Simple static page to train some skills and publish in Github pages.
 
     [x] HTML;
     [x] CSS;
