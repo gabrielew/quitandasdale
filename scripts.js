@@ -57,8 +57,7 @@ window.onload = () => {
         if (city !== "Varginha") {
           Toastify({
             text: `Atenção, ainda não atendemos a sua cidade!`,
-            duration: 3000,
-            destination: "https://github.com/apvarun/toastify-js",
+            duration: 60000,
             newWindow: true,
             close: true,
             gravity: "top", // `top` or `bottom`
@@ -74,5 +73,22 @@ window.onload = () => {
       });
   }
 
-  navigator.geolocation.getCurrentPosition(getCity);
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      getCity(position);
+    },
+    (err) => {
+      Toastify({
+        text: `Atenção, entregas somente na cidade de VARGINHA/MG!`,
+        duration: 60000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        backgroundColor: "linear-gradient(to right, #ddddd, #96c93d)",
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        onClick: function () {}, // Callback after click
+      }).showToast();
+    }
+  );
 };
